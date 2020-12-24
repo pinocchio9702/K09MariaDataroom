@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>K09MariaDataroom</display-name>
+  
+  	<!-- 차후 게시판에서 사용할 페이지 번호의 설정값 -->
+	<context-param><!-- 한 페이지에서 출력할 게시물의 갯수 -->
+		<param-name>PAGE_SIZE</param-name>
+		<param-value>2</param-value>
+	</context-param>
+
+	<context-param><!-- 한 블럭당 출력할 페이지 번호의 개수 -->
+		<param-name>BLOCK_PAGE</param-name>
+		<param-value>2</param-value>
+	</context-param>
+  
+  
+  
+  	<!-- Model2방식의 서블릿 게시판 제작(자료실) -->
+	<!-- 자료실 리스트 매핑 -->
+	<servlet>
+		<servlet-name>DataList</servlet-name>
+		<servlet-class>controller.ListCtrl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataList</servlet-name>
+		<url-pattern>/DataRoom/DataList</url-pattern>
+	</servlet-mapping>
+	
+	<context-param>
+  	<param-name>MariaJDBCDriver</param-name>
+  	<param-value>org.mariadb.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaConnectURL</param-name>
+  	<param-value>jdbc:mariadb://127.0.0.1:3306/kosmo_db</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaUser</param-name>
+  	<param-value>kosmo_user</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaPass</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
+	
+	<!-- 자료실 글쓰기 매핑 -->
+	<servlet>
+		<servlet-name>DataWrite</servlet-name>
+		<servlet-class>controller.WriteCtrl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataWrite</servlet-name>
+		<url-pattern>/DataRoom/DataWrite</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 자료실 상세보기 매핑 -->
+	<servlet>
+		<servlet-name>DataView</servlet-name>
+		<servlet-class>controller.ViewCtrl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataView</servlet-name>
+		<url-pattern>/DataRoom/DataView</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 자료실 패스워드 검증 매핑 -->
+	<servlet>
+		<servlet-name>DataRoomRassword</servlet-name>
+		<servlet-class>controller.PasswordCtrl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataRoomRassword</servlet-name>
+		<url-pattern>/DataRoom/DataPassword</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 자료실 제거 매핑 -->
+	<servlet>
+		<servlet-name>DataRoomDelete</servlet-name>
+		<servlet-class>controller.DeleteCtrl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataRoomDelete</servlet-name>
+		<url-pattern>/DataRoom/DataDelete</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 자료실 수정 매핑 -->
+	<servlet>
+		<servlet-name>DataRoomEdit</servlet-name>
+		<servlet-class>controller.EditCtrl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataRoomEdit</servlet-name>
+		<url-pattern>/DataRoom/DataEdit</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 파일다운로드 -->
+	<servlet>
+		<servlet-name>DataRoomDownload</servlet-name>
+		<servlet-class>controller.DownloadCtrl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataRoomDownload</servlet-name>
+		<url-pattern>/DataRoom/Download</url-pattern>
+	</servlet-mapping>
+  
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
